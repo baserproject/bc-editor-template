@@ -9,11 +9,11 @@
  * @license       https://basercms.net/license/index.html MIT License
  */
 
-return [
-    'type' => 'CorePlugin',
-    'title' => __d('baser_core', 'エディターテンプレート'),
-    'description' => __d('baser_core', 'CKEditorのテンプレート管理機能'),
-    'author' => 'baserCMS User Community',
-    'url' => 'https://basercms.net',
-    'installMessage' => ''
-];
+namespace BcEditorTemplate\Test\Fixture\Factory;
+
+use Cake\TestSuite\Fixture\TestFixture;
+
+/**
+ * Class EditorTemplatesFixture
+ */
+class EditorTemplatesFixture extends TestFixture {}
