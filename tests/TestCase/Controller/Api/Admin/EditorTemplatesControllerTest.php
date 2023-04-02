@@ -9,13 +9,13 @@
  * @license       https://basercms.net/license/index.html MIT License
  */
 
-namespace BcEditorTemplate\Test\TestCase\Controller\Api;
+namespace BcEditorTemplate\Test\TestCase\Controller\Api\Admin;
 
 use BaserCore\Test\Scenario\InitAppScenario;
 use BaserCore\TestSuite\BcTestCase;
 use BcEditorTemplate\Test\Scenario\EditorTemplatesScenario;
-use CakephpFixtureFactories\Scenario\ScenarioAwareTrait;
 use Cake\TestSuite\IntegrationTestTrait;
+use CakephpFixtureFactories\Scenario\ScenarioAwareTrait;
 
 /**
  * Class EditorTemplatesControllerTest
@@ -84,7 +84,7 @@ class EditorTemplatesControllerTest extends BcTestCase
     {
         //データを生成
         $this->loadFixtureScenario(EditorTemplatesScenario::class);
-        $this->get('/baser/api/bc-editor-template/editor_templates/index.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-editor-template/editor_templates/index.json?token=' . $this->accessToken);
         $this->assertResponseOk();
         $result = json_decode((string)$this->_response->getBody());
         // エディターテンプレート一覧は全て3件が返す
@@ -98,7 +98,7 @@ class EditorTemplatesControllerTest extends BcTestCase
     {
         //データを生成
         $this->loadFixtureScenario(EditorTemplatesScenario::class);
-        $this->get('/baser/api/bc-editor-template/editor_templates/view/1.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-editor-template/editor_templates/view/1.json?token=' . $this->accessToken);
         //ステータスを確認
         $this->assertResponseOk();
         //戻る値を確認
@@ -106,7 +106,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $this->assertEquals('画像（左）とテキスト', $result->editorTemplate->name);
 
         //存在しないIDを指定の場合、
-        $this->get('/baser/api/bc-editor-template/editor_templates/view/10.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-editor-template/editor_templates/view/10.json?token=' . $this->accessToken);
         //ステータスを確認
         $this->assertResponseCode(404);
         //メッセージ内容を確認
@@ -126,7 +126,7 @@ class EditorTemplatesControllerTest extends BcTestCase
             'description' => 'test description',
             'html' => 'test html'
         ];
-        $this->post('/baser/api/bc-editor-template/editor_templates/add.json?token=' . $this->accessToken, $data);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/add.json?token=' . $this->accessToken, $data);
         //ステータスを確認
         $this->assertResponseOk();
         //戻る値を確認
@@ -135,7 +135,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $this->assertEquals('画像（左）とテキスト', $result->editorTemplate->name);
 
         //テンプレート名を指定しない場合、
-        $this->post('/baser/api/bc-editor-template/editor_templates/add.json?token=' . $this->accessToken, ['name' => '']);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/add.json?token=' . $this->accessToken, ['name' => '']);
         //ステータスを確認
         $this->assertResponseCode(400);
         //戻る値を確認
@@ -150,7 +150,7 @@ class EditorTemplatesControllerTest extends BcTestCase
     public function test_edit()
     {
         $this->loadFixtureScenario(EditorTemplatesScenario::class);
-        $this->post('/baser/api/bc-editor-template/editor_templates/edit/1.json?token=' . $this->accessToken, ['name' => 'name edit']);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/edit/1.json?token=' . $this->accessToken, ['name' => 'name edit']);
         //ステータスを確認
         $this->assertResponseOk();
         //戻る値を確認
@@ -159,7 +159,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $this->assertEquals('name edit', $result->editorTemplate->name);
 
         //無効なIDを指定した場合、
-        $this->post('/baser/api/bc-editor-template/editor_templates/edit/10.json?token=' . $this->accessToken, ['name' => 'name edit']);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/edit/10.json?token=' . $this->accessToken, ['name' => 'name edit']);
         //ステータスを確認
         $this->assertResponseCode(404);
         //メッセージ内容を確認
@@ -167,7 +167,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $this->assertEquals('データが見つかりません。', $result->message);
 
         //無効なIDを指定した場合、
-        $this->post('/baser/api/bc-editor-template/editor_templates/edit/1.json?token=' . $this->accessToken, ['name' => '']);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/edit/1.json?token=' . $this->accessToken, ['name' => '']);
         //ステータスを確認
         $this->assertResponseCode(400);
         //戻る値を確認
@@ -183,7 +183,7 @@ class EditorTemplatesControllerTest extends BcTestCase
     {
         //データを生成
         $this->loadFixtureScenario(EditorTemplatesScenario::class);
-        $this->post('/baser/api/bc-editor-template/editor_templates/delete/1.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/delete/1.json?token=' . $this->accessToken);
         //ステータスを確認
         $this->assertResponseOk();
         //戻る値を確認
@@ -192,7 +192,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $this->assertEquals('画像（左）とテキスト', $result->editorTemplate->name);
 
         //無効なIDを指定した場合、
-        $this->post('/baser/api/bc-editor-template/editor_templates/delete/10.json?token=' . $this->accessToken);
+        $this->post('/baser/api/admin/bc-editor-template/editor_templates/delete/10.json?token=' . $this->accessToken);
         //ステータスを確認
         $this->assertResponseCode(404);
         //メッセージ内容を確認
@@ -208,7 +208,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         //データを生成
         $this->loadFixtureScenario(EditorTemplatesScenario::class);
         //APIを呼ぶ
-        $this->get('/baser/api/bc-editor-template/editor_templates/list.json?token=' . $this->accessToken);
+        $this->get('/baser/api/admin/bc-editor-template/editor_templates/list.json?token=' . $this->accessToken);
         //ステータスを確認
         $this->assertResponseOk();
         //戻る値を確認

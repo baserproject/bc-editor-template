@@ -9,15 +9,15 @@
  * @license       https://basercms.net/license/index.html MIT License
  */
 
-namespace BcEditorTemplate\Controller\Api;
+namespace BcEditorTemplate\Controller\Api\Admin;
 
-use BaserCore\Controller\Api\BcApiController;
+use BaserCore\Controller\Api\Admin\BcAdminApiController;
 use BcEditorTemplate\Service\EditorTemplatesServiceInterface;
 use Cake\Datasource\Exception\RecordNotFoundException;
 use Cake\ORM\Exception\PersistenceFailedException;
+use BaserCore\Annotation\UnitTest;
 use BaserCore\Annotation\NoTodo;
 use BaserCore\Annotation\Checked;
-use BaserCore\Annotation\UnitTest;
 
 /**
  * Class EditorTemplatesController
@@ -26,7 +26,7 @@ use BaserCore\Annotation\UnitTest;
  *
  * エディタテンプレートのAPI
  */
-class EditorTemplatesController extends BcApiController
+class EditorTemplatesController extends BcAdminApiController
 {
 
     /**
