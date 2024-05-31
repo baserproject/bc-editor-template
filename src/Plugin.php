@@ -21,7 +21,7 @@ use BaserCore\Annotation\Checked;
 /**
  * Class Plugin
  */
-class BcEditorTemplatePlugin extends BcPlugin
+class Plugin extends BcPlugin
 {
 
     /**
