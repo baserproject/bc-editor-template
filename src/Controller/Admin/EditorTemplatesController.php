@@ -37,7 +37,6 @@ class EditorTemplatesController extends BcAdminAppController
      * @param EditorTemplatesService $service
      * @checked
      * @noTodo
-     * @UnitTest
      */
     public function index(EditorTemplatesServiceInterface $service)
     {
@@ -52,7 +51,6 @@ class EditorTemplatesController extends BcAdminAppController
      * @param EditorTemplatesService $service
      * @checked
      * @noTodo
-     * @UnitTest
      */
     public function add(EditorTemplatesServiceInterface $service)
     {
@@ -74,7 +72,7 @@ class EditorTemplatesController extends BcAdminAppController
                 ]);
 
                 $this->BcMessage->setSuccess(__d('baser_core', 'テンプレート「{0}」を追加しました', $entity->name));
-                return $this->redirect(['action' => 'index']);
+                $this->redirect(['action' => 'index']);
             } catch (PersistenceFailedException $e) {
                 $entity = $e->getEntity();
                 $this->BcMessage->setError(__d('baser_core', '入力エラーです。内容を修正してください。'));
@@ -85,6 +83,7 @@ class EditorTemplatesController extends BcAdminAppController
         $this->set([
             'editorTemplate' => $entity?? $service->getNew()
         ]);
+        $this->viewBuilder()->addHelper(BcSiteConfig::get('editor'));
     }
 
     /**
@@ -94,7 +93,6 @@ class EditorTemplatesController extends BcAdminAppController
      * @param int $id
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function edit(EditorTemplatesServiceInterface $service, int $id)
     {
@@ -117,7 +115,7 @@ class EditorTemplatesController extends BcAdminAppController
                 ]);
 
                 $this->BcMessage->setSuccess(__d('baser_core', 'テンプレート「{0}」を更新しました', $entity->name));
-                return $this->redirect(['action' => 'index']);
+                $this->redirect(['action' => 'index']);
             } catch (PersistenceFailedException $e) {
                 $entity = $e->getEntity();
                 $this->BcMessage->setError(__d('baser_core', '入力エラーです。内容を修正してください。'));
@@ -128,6 +126,7 @@ class EditorTemplatesController extends BcAdminAppController
         $this->set([
             'editorTemplate' => $entity
         ]);
+        $this->viewBuilder()->addHelper(BcSiteConfig::get('editor'));
     }
 
     /**
@@ -138,7 +137,6 @@ class EditorTemplatesController extends BcAdminAppController
      * @return \Cake\Http\Response|void|null
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function delete(EditorTemplatesServiceInterface $service, $id)
     {
@@ -162,7 +160,6 @@ class EditorTemplatesController extends BcAdminAppController
      * @param EditorTemplatesService $service
      * @checked
      * @noTodo
-     * @unitTest
      */
     public function js(EditorTemplatesServiceInterface $service)
     {

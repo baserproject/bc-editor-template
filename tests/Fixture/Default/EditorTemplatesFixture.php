@@ -1,33 +1,26 @@
 <?php
-/**
- * baserCMS :  Based Website Development Project <https://basercms.net>
- * Copyright (c) NPO baser foundation <https://baserfoundation.org/>
- *
- * @copyright     Copyright (c) NPO baser foundation
- * @link          https://basercms.net baserCMS Project
- * @since         5.0.0
- * @license       https://basercms.net/license/index.html MIT License
- */
+declare(strict_types=1);
 
-namespace BcEditorTemplate\Test\Scenario;
+namespace BaserCore\Test\Fixture;
 
-use BcEditorTemplate\Test\Factory\EditorTemplateFactory;
-use CakephpFixtureFactories\Scenario\FixtureScenarioInterface;
+use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * 利用する場合は、テーブルの初期化に次のフィクスチャの定義が必要
- * - plugin.BcEditorTemplate.Factory/EditorTemplates
+ * EditorTemplatesFixture
  */
-class EditorTemplatesScenario implements FixtureScenarioInterface
+class EditorTemplatesFixture extends TestFixture
 {
 
+    public $import = ['table' => 'editor_templates'];
+
     /**
-     * load
+     * Records
+     *
+     * @var array
      */
-    public function load(...$args)
-    {
-        EditorTemplateFactory::make([
-            'id' => '11',
+    public $records = [
+        [
+            'id' => '1',
             'name' => '画像（左）とテキスト',
             'image' => 'template1.gif',
             'description' => '画像を左に配置し、その右にテキストを配置するブロックです。',
@@ -42,9 +35,9 @@ class EditorTemplatesScenario implements FixtureScenarioInterface
 <p>新しいブロックを挿入します。不要な場合はこの段落を削除します</p>',
             'modified' => null,
             'created' => '2015-01-27 12:56:52'
-        ])->persist();
-        EditorTemplateFactory::make([
-            'id' => '12',
+        ],
+        [
+            'id' => '2',
             'name' => '画像（右）とテキスト',
             'image' => 'template2.gif',
             'description' => '画像を右に配置し、その左にテキストを配置するブロックです。',
@@ -59,9 +52,9 @@ class EditorTemplatesScenario implements FixtureScenarioInterface
 <p>新しいブロックを挿入します。不要な場合はこの段落を削除します</p>',
             'modified' => null,
             'created' => '2015-01-27 12:56:52'
-        ])->persist();
-        EditorTemplateFactory::make([
-            'id' => '13',
+        ],
+        [
+            'id' => '3',
             'name' => 'テキスト２段組',
             'image' => 'template3.gif',
             'description' => 'テキストを左右に２段組するブロックです。',
@@ -87,6 +80,6 @@ class EditorTemplatesScenario implements FixtureScenarioInterface
 	新しいブロックを挿入します。不要な場合はこの段落を削除します</p>',
             'modified' => null,
             'created' => '2015-01-27 12:56:52'
-        ])->persist();
-    }
+        ],
+    ];
 }
