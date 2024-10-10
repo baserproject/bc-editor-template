@@ -13,7 +13,6 @@ namespace BcEditorTemplate\Test\TestCase\Controller\Admin;
 
 use BaserCore\Test\Scenario\InitAppScenario;
 use BaserCore\TestSuite\BcTestCase;
-use BaserCore\Utility\BcContainerTrait;
 use BcEditorTemplate\Test\Scenario\EditorTemplatesScenario;
 use Cake\Datasource\ConnectionManager;
 use Cake\Event\Event;
@@ -31,7 +30,6 @@ class EditorTemplatesControllerTest extends BcTestCase
      * ScenarioAwareTrait
      */
     use ScenarioAwareTrait;
-    use BcContainerTrait;
     use IntegrationTestTrait;
 
     /**
@@ -53,7 +51,6 @@ class EditorTemplatesControllerTest extends BcTestCase
     public function tearDown(): void
     {
         parent::tearDown();
-        $this->truncateTable('editor_templates');
     }
 
     /**
@@ -115,7 +112,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $data = [
             'name' => 'japan'
         ];
-        $this->post('/baser/admin/bc-editor-template/editor_templates/edit/11', $data);
+        $this->post('/baser/admin/bc-editor-template/editor_templates/edit/1', $data);
         $editorTemplates = $this->getTableLocator()->get('BcEditorTemplate.EditorTemplates');
         $query = $editorTemplates->find()->where(['name' => 'beforeAdd']);
         $this->assertEquals(1, $query->count());
@@ -138,7 +135,7 @@ class EditorTemplatesControllerTest extends BcTestCase
         $data = [
             'name' => 'japan2'
         ];
-        $this->post('/baser/admin/bc-editor-template/editor_templates/edit/11', $data);
+        $this->post('/baser/admin/bc-editor-template/editor_templates/edit/1', $data);
         $editorTemplates = $this->getTableLocator()->get('BcEditorTemplate.EditorTemplates');
         $query = $editorTemplates->find()->where(['name' => 'afterAdd']);
         $this->assertEquals(1, $query->count());
