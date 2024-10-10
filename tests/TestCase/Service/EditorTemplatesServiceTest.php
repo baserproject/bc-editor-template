@@ -28,6 +28,15 @@ class EditorTemplatesServiceTest extends BcTestCase
     use ScenarioAwareTrait;
 
     /**
+     * Fixtures
+     *
+     * @var array
+     */
+    protected $fixtures = [
+        'plugin.BcEditorTemplate.Factory/EditorTemplates',
+    ];
+
+    /**
      * set up
      */
     public function setUp(): void
