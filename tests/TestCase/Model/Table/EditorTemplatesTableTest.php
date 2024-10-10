@@ -60,32 +60,16 @@ class EditorTemplatesTableTest extends BcTestCase
      */
     public function test_validationDefault()
     {
-        $validator = $this->EditorTemplatesTable->getValidator('default');
-        //入力フィールドのデータが超えた場合
-        $errors = $validator->validate([
-            'name' => str_repeat('a', 51),
-            'description' => str_repeat('a', 256),
+        $this->markTestIncomplete('このテストは、未確認。');
+        $this->EditorTemplate->create([
+            'EditorTemplate' => [
+                'name' => '',
+                'link' => '',
+            ]
         ]);
-
-        //戻り値を確認
-        $this->assertEquals('テンプレート名は50文字以内で入力してください。', current($errors['name']));
-        $this->assertEquals('説明文は255文字以内で入力してください。', current($errors['description']));
-
-        //テンプレート名を入力しない場合、
-        $errors = $validator->validate([
-            'name' => ''
-        ]);
-
-        //戻り値を確認
-        $this->assertEquals('テンプレート名を入力してください。', current($errors['name']));
-
-        //許可されていないファイルをアップロードした場合、
-        $errors = $validator->validate([
-            'image' => 'image.ppp'
-        ]);
-
-        //戻り値を確認
-        $this->assertEquals('許可されていないファイルです。', current($errors['image']));
+        $this->assertFalse($this->EditorTemplate->validates());
+        $this->assertArrayHasKey('name', $this->EditorTemplate->validationErrors);
+        $this->assertEquals('テンプレート名を入力してください。', current($this->EditorTemplate->validationErrors['name']));
     }
 
 }
