@@ -32,6 +32,7 @@ class EditorTemplatesTable extends AppTable
      * @param array $config
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function initialize(array $config): void
     {
@@ -61,6 +62,7 @@ class EditorTemplatesTable extends AppTable
      * @return Validator
      * @checked
      * @noTodo
+     * @unitTest
      */
     public function validationDefault(Validator $validator): Validator
     {
