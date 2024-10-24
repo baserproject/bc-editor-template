@@ -25,8 +25,8 @@ use BaserCore\Annotation\UnitTest;
  * @property string $image
  * @property string $description
  * @property string $html
- * @property \Cake\I18n\DateTime $created
- * @property \Cake\I18n\DateTime $modified
+ * @property FrozenTime $created
+ * @property FrozenTime $modified
  */
 class EditorTemplate extends Entity
 {
@@ -36,7 +36,7 @@ class EditorTemplate extends Entity
      *
      * @var array
      */
-    protected array $_accessible = [
+    protected $_accessible = [
         '*' => true,
         'id' => false
     ];
